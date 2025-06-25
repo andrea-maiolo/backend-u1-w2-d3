@@ -7,6 +7,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//-------------------------------
+//da mettere getter e setters e mettere private negli atributi
+//---------------------------
+
 public class Main {
     public static void main(String[] args) {
 
@@ -54,6 +59,11 @@ public class Main {
                 .filter(product -> product.category.equals("books"))
                 .filter(book -> book.price > 100).toList();
 
+        //si poteva fare con un unico filter
+//        List<Product> bookOver!00 = allProductsList.stream()
+//                        .filter(product -> product.category.equals("books") && product.price > 100)
+//                        .toList();
+
         System.out.println(bookOver100List.toString());
 
         order1.addToCart(book1);
@@ -78,10 +88,15 @@ public class Main {
 
 //        List<Order> listaOrdiniConBaby = order => look in productlist => is there a prod form category baby?
         System.out.println("--------------------HERE-------------------------------");
-        allOrders.stream()
-                .map(order -> order.productList)
-                .map(productList -> productList.stream().filter(prod -> prod.category.equals("baby")).toList())
-                .forEach(res -> System.out.println(res));
+//        allOrders.stream()
+//                .map(order -> order.productList)
+//                .map(productList -> productList.stream().filter(prod -> prod.category.equals("baby")).toList())
+//                .forEach(res -> System.out.println(res));
+        List<Order> listaFiltrata = allOrders.stream()
+                .filter(order -> order.productList.stream()
+                        .anyMatch(product -> product.category.equals("baby")))
+                .toList();
+        System.out.println(listaFiltrata);
         System.out.println("--------------------HERE-------------------------------");
 
         //esercizio 3

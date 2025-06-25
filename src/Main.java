@@ -1,6 +1,7 @@
 import entities.Customer;
 import entities.Order;
 import entities.Product;
+import functionalInterface.Discount;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -84,15 +85,21 @@ public class Main {
         System.out.println("--------------------HERE-------------------------------");
 
         //esercizio 3
-//        Discount tenPercent = n -> {
-//            int discountValue = (n * 10) / 100;
-//            return n - discountValue;
-//        };
+        Discount tenPercent = n -> {
+            double discountValue = (n * 10) / 100;
+            return n - discountValue;
+        };
 
-//        List<Product> discountedStuff = allProductsList.stream()
-//                .filter(prod -> prod.category.equals("boys"))
-//                .map(prod -> tenPercent.sconto(prod.price))
-//                .toList();
+        List<Product> discountedStuff = allProductsList.stream()
+                .filter(prod -> prod.category.equals("boys"))
+                .map(prod -> {
+                    prod.price = tenPercent.sconto(prod.price);
+                    return prod;
+                })
+                .toList();
+        System.out.println("--------------------HERE for ex 3-------------------------------");
+        System.out.println(discountedStuff);
+        System.out.println("--------------------HERE for ex3-------------------------------");
 
 
         //esercizio 4

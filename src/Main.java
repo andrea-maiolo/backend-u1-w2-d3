@@ -53,7 +53,7 @@ public class Main {
                 .filter(product -> product.category.equals("books"))
                 .filter(book -> book.price > 100).toList();
 
-        //System.out.println(bookOver100List.toString());
+        System.out.println(bookOver100List.toString());
 
         order1.addToCart(book1);
         order1.addToCart(boys3);
@@ -66,7 +66,7 @@ public class Main {
         order3.addToCart(book1);
         order3.addToCart(book4);
 
-        //System.out.println(order1.toString());
+        System.out.println(order1.toString());
 
         //esercizio 2
         List<Order> allOrders = new ArrayList<>();
@@ -75,11 +75,13 @@ public class Main {
         allOrders.add(order3);
 
 
-//        List<Order> listaOrdiniConBaby =
-//        allOrders.stream()
-//                .map(order -> order.productList)
-//                .forEach(res -> System.out.println(res));
-
+//        List<Order> listaOrdiniConBaby = order => look in productlist => is there a prod form category baby?
+        System.out.println("--------------------HERE-------------------------------");
+        allOrders.stream()
+                .map(order -> order.productList)
+                .map(productList -> productList.stream().filter(prod -> prod.category.equals("baby")).toList())
+                .forEach(res -> System.out.println(res));
+        System.out.println("--------------------HERE-------------------------------");
 
         //esercizio 3
 //        Discount tenPercent = n -> {

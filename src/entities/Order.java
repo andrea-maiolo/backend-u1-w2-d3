@@ -7,11 +7,11 @@ import java.util.Random;
 
 public class Order {
     public List<Product> productList;
+    public LocalDate orderDate;
+    public Customer customer;
     private long id;
     private String status;
-    private LocalDate orderDate;
     private LocalDate deliveryDate;
-    private Customer customer;
 
     public Order(Customer c, String status) {
         this.customer = c;

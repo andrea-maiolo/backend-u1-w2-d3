@@ -2,6 +2,7 @@ import entities.Customer;
 import entities.Order;
 import entities.Product;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class Main {
         allProductsList.add(boys3);
         allProductsList.add(boys4);
 
+        //esercizio 1
         //lista di prodotti books con prezzo superiore a 100
         List<Product> bookOver100List = allProductsList.stream()
                 .filter(product -> product.category.equals("books"))
@@ -66,6 +68,7 @@ public class Main {
 
         //System.out.println(order1.toString());
 
+        //esercizio 2
         List<Order> allOrders = new ArrayList<>();
         allOrders.add(order1);
         allOrders.add(order2);
@@ -73,13 +76,34 @@ public class Main {
 
 
 //        List<Order> listaOrdiniConBaby =
-        allOrders.stream()
-                .map(order -> order.productList)
-                .filter(productL -> prod.category.equals("books"))
-                .forEach(res -> System.out.println(res));
+//        allOrders.stream()
+//                .map(order -> order.productList)
+//                .forEach(res -> System.out.println(res));
 
+
+        //esercizio 3
+//        Discount tenPercent = n -> {
+//            int discountValue = (n * 10) / 100;
+//            return n - discountValue;
+//        };
+
+//        List<Product> discountedStuff = allProductsList.stream()
+//                .filter(prod -> prod.category.equals("boys"))
+//                .map(prod -> tenPercent.sconto(prod.price))
+//                .toList();
+
+
+        //esercizio 4
+        LocalDate dataRiferimentoInizio = LocalDate.of(2025, 6, 23);
+        LocalDate dataRiferimentoFine = LocalDate.of(2025, 6, 27);
+
+        List<Order> ordiniInData = allOrders.stream()
+                .filter(order -> order.customer.tier == 2)
+                .filter(orderFrmTier2Customer ->
+                        orderFrmTier2Customer.orderDate.isAfter(dataRiferimentoInizio) &&
+                                orderFrmTier2Customer.orderDate.isBefore(dataRiferimentoFine))
+                .toList();
+        System.out.println(ordiniInData);
 
     }
-
-
 }

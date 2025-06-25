@@ -3,14 +3,23 @@ package entities;
 import java.util.Random;
 
 public class Customer {
+    public int tier;
     private String name;
     private long id;
-    private int tier;
 
     public Customer(String name, int tier) {
         this.name = name;
         Random random = new Random();
         this.id = random.nextLong();
         this.tier = tier;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "tier=" + tier +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

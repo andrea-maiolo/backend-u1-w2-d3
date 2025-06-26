@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Order {
-    public List<Product> productList;
-    public LocalDate orderDate;
     public Customer customer;
+    private List<Product> productList;
+    private LocalDate orderDate;
     private long id;
     private String status;
     private LocalDate deliveryDate;
@@ -25,6 +25,30 @@ public class Order {
 
     public void addToCart(Product p) {
         this.productList.add(p);
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public LocalDate getDeliveryDate() {
+        return deliveryDate;
     }
 
     @Override

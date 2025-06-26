@@ -3,8 +3,8 @@ package entities;
 import java.util.Random;
 
 public class Product {
-    public String category;
-    public double price;
+    private String category;
+    private double price;
     private long id;
     private String name;
 
@@ -14,6 +14,26 @@ public class Product {
         this.category = category;
         this.name = name;
         this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

@@ -3,7 +3,7 @@ package entities;
 import java.util.Random;
 
 public class Customer {
-    public int tier;
+    private int tier;
     private String name;
     private long id;
 
@@ -12,6 +12,18 @@ public class Customer {
         Random random = new Random();
         this.id = random.nextLong();
         this.tier = tier;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public int getTier() {
+        return tier;
     }
 
     @Override

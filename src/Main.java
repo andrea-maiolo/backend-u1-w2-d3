@@ -7,11 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
-//-------------------------------
-//da mettere getter e setters e mettere private negli atributi
-//---------------------------
-
 public class Main {
     public static void main(String[] args) {
 
@@ -55,16 +50,16 @@ public class Main {
 
         //esercizio 1
         //lista di prodotti books con prezzo superiore a 100
-        List<Product> bookOver100List = allProductsList.stream()
-                .filter(product -> product.category.equals("books"))
-                .filter(book -> book.price > 100).toList();
+//        List<Product> bookOver100List = allProductsList.stream()
+//                .filter(product -> product.getCategory().equals("books"))
+//                .filter(book -> book.getPrice() > 100).toList();
 
         //si poteva fare con un unico filter
-//        List<Product> bookOver!00 = allProductsList.stream()
-//                        .filter(product -> product.category.equals("books") && product.price > 100)
-//                        .toList();
+        List<Product> bookOver100 = allProductsList.stream()
+                .filter(product -> product.getCategory().equals("books") && product.getPrice() > 100)
+                .toList();
 
-        System.out.println(bookOver100List.toString());
+        System.out.println(bookOver100.toString());
 
         order1.addToCart(book1);
         order1.addToCart(boys3);
@@ -88,13 +83,9 @@ public class Main {
 
 //        List<Order> listaOrdiniConBaby = order => look in productlist => is there a prod form category baby?
         System.out.println("--------------------HERE-------------------------------");
-//        allOrders.stream()
-//                .map(order -> order.productList)
-//                .map(productList -> productList.stream().filter(prod -> prod.category.equals("baby")).toList())
-//                .forEach(res -> System.out.println(res));
         List<Order> listaFiltrata = allOrders.stream()
-                .filter(order -> order.productList.stream()
-                        .anyMatch(product -> product.category.equals("baby")))
+                .filter(order -> order.getProductList().stream()
+                        .anyMatch(product -> product.getCategory().equals("baby")))
                 .toList();
         System.out.println(listaFiltrata);
         System.out.println("--------------------HERE-------------------------------");
@@ -106,9 +97,10 @@ public class Main {
         };
 
         List<Product> discountedStuff = allProductsList.stream()
-                .filter(prod -> prod.category.equals("boys"))
+                .filter(prod -> prod.getCategory().equals("boys"))
                 .map(prod -> {
-                    prod.price = tenPercent.sconto(prod.price);
+                    double finalPrice = tenPercent.sconto(prod.getPrice());
+                    prod.setPrice(finalPrice);
                     return prod;
                 })
                 .toList();
@@ -122,10 +114,10 @@ public class Main {
         LocalDate dataRiferimentoFine = LocalDate.of(2025, 6, 27);
 
         List<Order> ordiniInData = allOrders.stream()
-                .filter(order -> order.customer.tier == 2)
+                .filter(order -> order.customer.getTier() == 2)
                 .filter(orderFrmTier2Customer ->
-                        orderFrmTier2Customer.orderDate.isAfter(dataRiferimentoInizio) &&
-                                orderFrmTier2Customer.orderDate.isBefore(dataRiferimentoFine))
+                        orderFrmTier2Customer.getOrderDate().isAfter(dataRiferimentoInizio) &&
+                                orderFrmTier2Customer.getOrderDate().isBefore(dataRiferimentoFine))
                 .toList();
         System.out.println(ordiniInData);
 
